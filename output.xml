@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.4 on win32)" generated="20230823 22:40:18.349" rpa="false" schemaversion="4">
+<suite id="s1" name="test CreateCourier" source="C:\Users\1\Desktop\INTEXSOFT\api_test_robot_org\tests\test_CreateCourier.robot">
+<test id="s1-t1" name="Test Can Create a Courier" line="21">
+<kw name="Create Courier">
+<var>${response}</var>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>login=AntonioMedved</arg>
+<arg>password=1234</arg>
+<arg>firstName=vasia</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:20.016" level="INFO">${json_data} = {'login': 'AntonioMedved', 'password': '1234', 'firstName': 'vasia'}</msg>
+<status status="PASS" starttime="20230823 22:40:20.016" endtime="20230823 22:40:20.016"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier</arg>
+<arg>data=${json_data}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:20.437" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ path_url=/api/v1/courier 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '49', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=login=AntonioMedved&amp;password=1234&amp;firstName=vasia 
+ </msg>
+<msg timestamp="20230823 22:40:20.437" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '11', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:19 GMT', 'ETag': 'W/"b-Ai2R8hgEarLmHKwesT1qcY913ys"', 'Set-Cookie': '_yasc=Bo0lk6Nqdj6Opra2PvhgIK6RD7nG37ddMmDlGR7RTwSUjxs4KHIvbCMU50Wp; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:19 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819619151398-529907495229453746'} 
+ body={"ok":true} 
+ </msg>
+<msg timestamp="20230823 22:40:20.437" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:20.016" endtime="20230823 22:40:20.437"/>
+</kw>
+<msg timestamp="20230823 22:40:20.437" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:20.016" endtime="20230823 22:40:20.437"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230823 22:40:20.437" endtime="20230823 22:40:20.437"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()}</arg>
+<arg>{'ok': True}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230823 22:40:20.437" level="INFO">Argument types are:
+&lt;class 'dict'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:20.437" endtime="20230823 22:40:20.437"/>
+</kw>
+<kw name="Delete Courier">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>login=AntonioMedved</arg>
+<arg>password=1234</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:20.453" level="INFO">${json_data} = {'login': 'AntonioMedved', 'password': '1234'}</msg>
+<status status="PASS" starttime="20230823 22:40:20.453" endtime="20230823 22:40:20.453"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier/login</arg>
+<arg>data=${json_data}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:20.546" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/login 
+ path_url=/api/v1/courier/login 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '33', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=login=AntonioMedved&amp;password=1234 
+ </msg>
+<msg timestamp="20230823 22:40:20.546" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '13', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:19 GMT', 'ETag': 'W/"d-HYDjWouA9eRof6xfg8Y7es7yECw"', 'Set-Cookie': '_yasc=u/NeDU9xse7I/iY6sVK9EsKVM9XHwYGcNCPEuVueenBNFT6I1TjQMo9n7Blx; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:19 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819619412221-16249076182255125773'} 
+ body={"id":215923} 
+ </msg>
+<msg timestamp="20230823 22:40:20.546" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:20.453" endtime="20230823 22:40:20.546"/>
+</kw>
+<kw name="DELETE" library="RequestsLibrary">
+<arg>${BASE_URL}courier/${response.json()['id']}</arg>
+<doc>Sends a DELETE request.</doc>
+<msg timestamp="20230823 22:40:20.679" level="INFO">DELETE Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/215923 
+ path_url=/api/v1/courier/215923 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230823 22:40:20.679" level="INFO">DELETE Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/215923 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '11', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:19 GMT', 'ETag': 'W/"b-Ai2R8hgEarLmHKwesT1qcY913ys"', 'Set-Cookie': '_yasc=JMZ2JnXuH0EcbcvWtfYU2rUIYxAwlNwf8AH2w+caCKbpbHI7V8BBpqr1q/Q=; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:19 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819619520792-12665960520942944776'} 
+ body={"ok":true} 
+ </msg>
+<status status="PASS" starttime="20230823 22:40:20.546" endtime="20230823 22:40:20.679"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:20.453" endtime="20230823 22:40:20.679"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:20.000" endtime="20230823 22:40:20.679"/>
+</test>
+<test id="s1-t2" name="Test Inability To Create - Two Identical Couriers" line="27">
+<kw name="Create Courier">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>login=AntonioMedved</arg>
+<arg>password=1234</arg>
+<arg>firstName=vasia</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:20.695" level="INFO">${json_data} = {'login': 'AntonioMedved', 'password': '1234', 'firstName': 'vasia'}</msg>
+<status status="PASS" starttime="20230823 22:40:20.695" endtime="20230823 22:40:20.695"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier</arg>
+<arg>data=${json_data}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:21.030" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ path_url=/api/v1/courier 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '49', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=login=AntonioMedved&amp;password=1234&amp;firstName=vasia 
+ </msg>
+<msg timestamp="20230823 22:40:21.030" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ status=201, reason=Created 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '11', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:19 GMT', 'ETag': 'W/"b-Ai2R8hgEarLmHKwesT1qcY913ys"', 'Set-Cookie': '_yasc=aU+joRvuuqR4N6aqxdTHQsAkWXmw104hheX3fi1huzdMsB0oMAv8G05FGBhJ; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:19 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819619651280-2197094200303414849'} 
+ body={"ok":true} 
+ </msg>
+<msg timestamp="20230823 22:40:21.030" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:20.695" endtime="20230823 22:40:21.030"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:20.695" endtime="20230823 22:40:21.030"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>login=AntonMe</arg>
+<arg>password=1234</arg>
+<arg>firstName=vasia</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:21.030" level="INFO">${json_data} = {'login': 'AntonMe', 'password': '1234', 'firstName': 'vasia'}</msg>
+<status status="PASS" starttime="20230823 22:40:21.030" endtime="20230823 22:40:21.030"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier</arg>
+<arg>data=${json_data}</arg>
+<arg>expected_status=409</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:21.108" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ path_url=/api/v1/courier 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '43', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=login=AntonMe&amp;password=1234&amp;firstName=vasia 
+ </msg>
+<msg timestamp="20230823 22:40:21.108" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ status=409, reason=Conflict 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '112', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:20 GMT', 'ETag': 'W/"70-sLG1ZktNk+Ab3iaKUMwxkdL4FJo"', 'Set-Cookie': '_yasc=1wuIpRHiCmvtTEOBFoeLSHGRoQJFaC20xAoLGZeMnrJsZXhaU1hcOiKJfkWv; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:19 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819619993994-1461471366058465581'} 
+ body={"code":409,"message":"Этот логин уже используется. Попробуйте другой."} 
+ </msg>
+<msg timestamp="20230823 22:40:21.186" level="INFO">${response} = &lt;Response [409]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:21.030" endtime="20230823 22:40:21.186"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>409</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230823 22:40:21.186" endtime="20230823 22:40:21.186"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()}</arg>
+<arg>{'code': 409, 'message': 'Этот логин уже используется. Попробуйте другой.'}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230823 22:40:21.218" level="INFO">Argument types are:
+&lt;class 'dict'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:21.186" endtime="20230823 22:40:21.218"/>
+</kw>
+<kw name="Delete Courier">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>login=AntonioMedved</arg>
+<arg>password=1234</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:21.218" level="INFO">${json_data} = {'login': 'AntonioMedved', 'password': '1234'}</msg>
+<status status="PASS" starttime="20230823 22:40:21.218" endtime="20230823 22:40:21.218"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier/login</arg>
+<arg>data=${json_data}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:21.537" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/login 
+ path_url=/api/v1/courier/login 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '33', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=login=AntonioMedved&amp;password=1234 
+ </msg>
+<msg timestamp="20230823 22:40:21.537" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '13', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:20 GMT', 'ETag': 'W/"d-iPwxRAnPrqBix43x6ppDIiebYvo"', 'Set-Cookie': '_yasc=oOtLLYv7Kxsh/1xTS7Y3f/kIwZgz7BtEYjwesjhv1YiTNCR8revcvrE9V5c=; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:20 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819620165227-17008132382733496517'} 
+ body={"id":215924} 
+ </msg>
+<msg timestamp="20230823 22:40:21.537" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:21.218" endtime="20230823 22:40:21.537"/>
+</kw>
+<kw name="DELETE" library="RequestsLibrary">
+<arg>${BASE_URL}courier/${response.json()['id']}</arg>
+<doc>Sends a DELETE request.</doc>
+<msg timestamp="20230823 22:40:22.649" level="INFO">DELETE Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/215924 
+ path_url=/api/v1/courier/215924 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230823 22:40:22.665" level="INFO">DELETE Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier/215924 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '11', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:21 GMT', 'ETag': 'W/"b-Ai2R8hgEarLmHKwesT1qcY913ys"', 'Set-Cookie': '_yasc=yupPyZERXcfTmGxLkiu7yTQ+gt210H/InLYT5y3X/43cyylK5v1vIWnRso8=; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:21 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819621493445-14716101853858032033'} 
+ body={"ok":true} 
+ </msg>
+<status status="PASS" starttime="20230823 22:40:21.537" endtime="20230823 22:40:22.665"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:21.218" endtime="20230823 22:40:22.665"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:20.695" endtime="20230823 22:40:22.665"/>
+</test>
+<test id="s1-t3" name="Test Without Date - Create Without Login" line="35">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>password=1234</arg>
+<arg>firstName=saske</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:22.665" level="INFO">${json_data} = {'password': '1234', 'firstName': 'saske'}</msg>
+<status status="PASS" starttime="20230823 22:40:22.665" endtime="20230823 22:40:22.665"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier</arg>
+<arg>data=${json_data}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:22.734" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ path_url=/api/v1/courier 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '29', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=password=1234&amp;firstName=saske 
+ </msg>
+<msg timestamp="20230823 22:40:22.734" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '114', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:21 GMT', 'ETag': 'W/"72-AUDx41VLe1HSztSRMybiiyHwcKY"', 'Set-Cookie': '_yasc=mVPDaVdaO13KYwAAysBL2sSrnU7Roqep+kPfzHjSnLH/nyrGc+pAuSn/5Og=; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:21 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819621609330-1103174524207790205'} 
+ body={"code":400,"message":"Недостаточно данных для создания учетной записи"} 
+ </msg>
+<msg timestamp="20230823 22:40:22.734" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:22.665" endtime="20230823 22:40:22.734"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>400</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230823 22:40:22.734" endtime="20230823 22:40:22.734"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()}</arg>
+<arg>{'code': 400, 'message': 'Недостаточно данных для создания учетной записи'}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230823 22:40:22.750" level="INFO">Argument types are:
+&lt;class 'dict'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:22.734" endtime="20230823 22:40:22.750"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:22.665" endtime="20230823 22:40:22.750"/>
+</test>
+<test id="s1-t4" name="Test Without Date - Create Without Password" line="42">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${json_data}</var>
+<arg>login=yura</arg>
+<arg>firstName=saske</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230823 22:40:22.750" level="INFO">${json_data} = {'login': 'yura', 'firstName': 'saske'}</msg>
+<status status="PASS" starttime="20230823 22:40:22.750" endtime="20230823 22:40:22.750"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${BASE_URL}courier</arg>
+<arg>data=${json_data}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230823 22:40:22.828" level="INFO">POST Request : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ path_url=/api/v1/courier 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '26', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=login=yura&amp;firstName=saske 
+ </msg>
+<msg timestamp="20230823 22:40:22.828" level="INFO">POST Response : url=http://qa-scooter.praktikum-services.ru/api/v1/courier 
+ status=400, reason=Bad Request 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Length': '114', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 23 Aug 2023 19:40:21 GMT', 'ETag': 'W/"72-AUDx41VLe1HSztSRMybiiyHwcKY"', 'Set-Cookie': '_yasc=j01vB5uuDM9S27CTMX+xbzpvtuq5exRfVNDIdPC6PFJ2ndm5lMzFnW/ub813; domain=.praktikum-services.ru; path=/; expires=Sat, 20 Aug 2033 19:40:21 GMT; secure', 'X-Powered-By': 'Express', 'X-Request-Id': '1692819621698118-3616605458189061876'} 
+ body={"code":400,"message":"Недостаточно данных для создания учетной записи"} 
+ </msg>
+<msg timestamp="20230823 22:40:22.828" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:22.750" endtime="20230823 22:40:22.843"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>400</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230823 22:40:22.843" endtime="20230823 22:40:22.843"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()}</arg>
+<arg>{'code': 400, 'message': 'Недостаточно данных для создания учетной записи'}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230823 22:40:22.843" level="INFO">Argument types are:
+&lt;class 'dict'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230823 22:40:22.843" endtime="20230823 22:40:22.843"/>
+</kw>
+<status status="PASS" starttime="20230823 22:40:22.750" endtime="20230823 22:40:22.843"/>
+</test>
+<status status="PASS" starttime="20230823 22:40:18.349" endtime="20230823 22:40:22.859"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="test CreateCourier">test CreateCourier</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
